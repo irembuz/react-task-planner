@@ -6,15 +6,13 @@ import HomeScreen from "./screens/HomeScreen";
 
 const App = () => {
   return (
-    <React.Fragment>
+    <div>
+      <Header />
       <div>
-        <Header />
-        <div>
-          <SideBar />
-          <HomeScreen />
-        </div>
+        <SideBar />
+        <HomeScreen />
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 
