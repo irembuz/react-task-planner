@@ -1,18 +1,21 @@
 import React from "react";
 import "./App.css";
+import { BrowserRouter } from "react-router-dom";
 import Header from "./components/Header";
 import SideBar from "./components/SideBar";
 import HomeScreen from "./screens/HomeScreen";
 
 const App = () => {
   return (
-    <div>
-      <Header />
+    <BrowserRouter>
       <div>
-        <SideBar />
-        <HomeScreen />
+        <Header />
+        <div>
+          <SideBar />
+          <HomeScreen />
+        </div>
       </div>
-    </div>
+    </BrowserRouter>
   );
 };
 
