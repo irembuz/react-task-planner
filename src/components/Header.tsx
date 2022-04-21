@@ -1,4 +1,6 @@
 import React from "react";
+
+import dayjs from "dayjs";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 export default function Header() {
@@ -16,6 +18,11 @@ export default function Header() {
           <MdKeyboardArrowRight />
         </span>
       </button>
+      <h2 className="ml-4 text-xl text-gray-500 font-bold">
+        {dayjs(
+          new Date(dayjs().year(), new Date().getMonth(), new Date().getDate())
+        ).format("DD MMMM YYYY")}
+      </h2>
     </header>
   );
 }
