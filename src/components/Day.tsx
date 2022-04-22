@@ -11,7 +11,7 @@ const Day = () => {
       { id: 1, time: new Date(timeStamp1), task: "Kitap oku" },
       { id: 2, time: new Date(timeStamp2), task: "Kedileri besle" },
     ];
-    setTasks([...INITIAL_STATE])
+    setTasks([...INITIAL_STATE]);
   }, []);
 
   return (
@@ -27,8 +27,7 @@ const Day = () => {
           {tasks.map((item: any) => (
             <tr>
               <td>
-                {item.time.getHours()} :
-                {item.time.getMinutes()}
+                {item.time.getHours()} :{item.time.getMinutes()}
               </td>
               <td>{item.task}</td>
             </tr>
