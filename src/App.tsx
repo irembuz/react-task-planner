@@ -10,11 +10,11 @@ const App = () => {
     <BrowserRouter>
       <div className="max-h-screen h-screen">
         <Header />
-        <div className="flex flex-row space-x-12">
-          <div className="basis-1/6">
+        <div className="grid grid-cols-6 gap-4">
+          <div className="col-span-1">
             <SideBar />
           </div>
-          <div className="basis-5/6 pt-5 pl-1">
+          <div className="p-4 col-span-5">
             <HomeScreen />
           </div>
         </div>

@@ -6,7 +6,7 @@ import SideBarData from "./SideBarData";
 
 const SideBar = () => {
   return (
-    <aside className="w-64 h-full bg-gray-50" aria-label="Sidebar">
+    <aside className="h-full bg-gray-50" aria-label="Sidebar">
       <div className="overflow-y-auto py-4 px-3 rounded dark:bg-gray-800">
         <ul className="space-y-2">
           {SideBarData.map((item: any) => (

@@ -20,23 +20,27 @@ const Day: FunctionComponent<any> = ({ day }) => {
   }, [filteredEvents, day]);
 
   return (
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th>Time</th>
-            <th>Task</th>
-          </tr>
-        </thead>
-        <tbody className="task">
-          {tasks.map((item: any) => (
-            <tr key={item.id}>
-              <td>{dayjs(item.time).format("HH:mm")}</td>
-              <td>{item.task}</td>
+    <div className="not-prose relative bg-slate-50 rounded-xl overflow-hidden dark:bg-slate-800/25">
+      <div className="relative rounded-xl overflow-auto">
+        <table className="border-collapse w-full border border-slate-400 dark:border-slate-500 bg-white dark:bg-slate-800 text-sm shadow-sm">
+          <thead className="bg-slate-50 dark:bg-slate-700">
+            <tr>
+              <th className="border border-slate-300">Time</th>
+              <th className="border border-slate-300">Task</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {tasks.map((item: any) => (
+              <tr key={item.id}>
+                <td className="border border-slate-300">
+                  {dayjs(item.time).format("HH:mm")}
+                </td>
+                <td className="border border-slate-300">{item.task}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
