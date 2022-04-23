@@ -8,7 +8,7 @@ import HomeScreen from "./screens/HomeScreen";
 const App = () => {
   return (
     <BrowserRouter>
-      <div className="max-h-screen">
+      <div className="max-h-screen h-screen">
         <Header />
         <div className="flex flex-row space-x-12">
           <div className="basis-1/6">
