@@ -1,19 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, {
+  useState,
+  useEffect,
+  FunctionComponent,
+  useContext,
+} from "react";
 import dayjs from "dayjs";
-import { listenerCount } from "process";
 
-const Day = () => {
+import GlobalContext from "../context/GlobalContext";
+
+const Day: FunctionComponent<any> = ({ day }) => {
   const [tasks, setTasks] = useState<any[]>([]);
+  const { filteredEvents } = useContext(GlobalContext);
 
   useEffect(() => {
-    const timeStamp1 = new Date().setMinutes(0) + 2 * 60 * 60 * 1000;
-    const timeStamp2 = new Date().setMinutes(0) + 4 * 60 * 60 * 1000;
-    const INITIAL_STATE = [
-      { id: 1, time: dayjs(timeStamp1), task: "Kitap oku" },
-      { id: 2, time: dayjs(timeStamp2), task: "Kedileri besle" },
-    ];
-    setTasks([...INITIAL_STATE]);
-  }, []);
+    const events = filteredEvents.filter(
+      (evt: any) => dayjs(evt.day).format("DD-MM-YY") === day.format("DD-MM-YY")
+    );
+    setTasks(events);
+  }, [filteredEvents, day]);
 
   return (
     <div>
@@ -26,8 +30,8 @@ const Day = () => {
         </thead>
         <tbody className="task">
           {tasks.map((item: any) => (
-            <tr>
-              <td>{item.time.format("HH:mm")}</td>
+            <tr key={item.id}>
+              <td>{dayjs(item.time).format("HH:mm")}</td>
               <td>{item.task}</td>
             </tr>
           ))}
