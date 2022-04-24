@@ -12,7 +12,7 @@ import { getFirstDayOfTheWeek } from "../util";
 const Week: FunctionComponent<any> = () => {
   const [day, setDay] = useState<any>();
   const [tasks, setTasks] = useState<any[]>([]);
-  const { filteredEvents } = useContext(GlobalContext);
+  const { filteredTasks } = useContext(GlobalContext);
 
   useEffect(() => {
     setDay(dayjs());
@@ -20,13 +20,13 @@ const Week: FunctionComponent<any> = () => {
 
   useEffect(() => {
     if (day != undefined) {
-      const events = filteredEvents.filter(
+      const events = filteredTasks.filter(
         (evt: any) =>
           dayjs(evt.day).format("DD-MM-YY") === day.format("DD-MM-YY")
       );
       setTasks(events);
     }
-  }, [filteredEvents, day]);
+  }, [filteredTasks, day]);
 
   return (
     <div className="not-prose relative bg-slate-50 rounded-xl overflow-hidden dark:bg-slate-800/25">

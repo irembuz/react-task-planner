@@ -18,7 +18,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-    {showTaskModal && <TaskModal />}
+      {showTaskModal && <TaskModal />}
       <div className="max-h-screen h-screen">
         <Header />
         <div className="grid grid-cols-6 gap-4">
@@ -26,7 +26,7 @@ const App = () => {
             <SideBar />
           </div>
           <div className="p-4 col-span-5">
-            <HomeScreen />
+            <HomeScreen month={currenMonth} />
           </div>
         </div>
       </div>

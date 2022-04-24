@@ -3,19 +3,19 @@ import { MdClose, MdDelete, MdDragHandle, MdSchedule } from "react-icons/md";
 import GlobalContext from "../context/GlobalContext";
 
 export default function TaskModal() {
-  const { setShowTaskModal, daySelected, dispatchCalEvent, selectedEvent } =
+  const { setShowTaskModal, daySelected, dispatchCalEvent, selectedTask } =
     useContext<any>(GlobalContext);
 
-  const [title, setTitle] = useState(selectedEvent ? selectedEvent.title : "");
+  const [title, setTitle] = useState(selectedTask ? selectedTask.title : "");
 
   function handleSubmit(e: any) {
     e.preventDefault();
     const calendarEvent = {
       title,
       day: daySelected.valueOf(),
-      id: selectedEvent ? selectedEvent.id : Date.now(),
+      id: selectedTask ? selectedTask.id : Date.now(),
     };
-    if (selectedEvent) {
+    if (selectedTask) {
       dispatchCalEvent({ type: "update", payload: calendarEvent });
     } else {
       dispatchCalEvent({ type: "push", payload: calendarEvent });
@@ -27,26 +27,26 @@ export default function TaskModal() {
     <div className="z-10 h-screen w-full fixed left-0 top-0 flex justify-center items-center">
       <form className="bg-white rounded-lg shadow-2xl w-1/4">
         <header className="bg-gray-100 px-4 py-2 flex justify-between items-center">
-          <span className="material-icons-outlined text-gray-400">
+          <span className="text-gray-400">
             <MdDragHandle />
           </span>
           <div>
-            {selectedEvent && (
+            {selectedTask && (
               <span
                 onClick={() => {
                   dispatchCalEvent({
                     type: "delete",
-                    payload: selectedEvent,
+                    payload: selectedTask,
                   });
                   setShowTaskModal(false);
                 }}
-                className="material-icons-outlined text-gray-400 cursor-pointer"
+                className="text-gray-400 cursor-pointer"
               >
                 <MdDelete />
               </span>
             )}
             <button onClick={() => setShowTaskModal(false)}>
-              <span className="material-icons-outlined text-gray-400">
+              <span className="text-gray-400">
                 <MdClose />
               </span>
             </button>
@@ -64,7 +64,7 @@ export default function TaskModal() {
               className="pt-3 border-0 text-gray-600 text-xl font-semibold pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
               onChange={(e) => setTitle(e.target.value)}
             />
-            <span className="material-icons-outlined text-gray-400">
+            <span className="text-gray-400">
               <MdSchedule />
             </span>
             <p>{daySelected.format("dddd, MMMM DD")}</p>
