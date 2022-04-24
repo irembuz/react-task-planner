@@ -17,7 +17,7 @@ function savedEventsReducer(state, { type, payload }) {
 }
 function initEvents() {
   const storageEvents = localStorage.getItem("savedTasks");
-  const parsedEvents = storageEvents ? JSON.parse(storageEvents) : [];
+  let parsedEvents = storageEvents ? JSON.parse(storageEvents) : [];
 
   if (parsedEvents.length < 1) {
     localStorage.setItem("savedTasks", JSON.stringify(INITIAL_STATE));
@@ -35,6 +35,7 @@ export default function ContextWrapper(props) {
   const [showTaskModal, setShowTaskModal] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
   const [labels, setLabels] = useState([]);
+  const [pathName, setPathName] = useState("");
   const [savedTasks, dispatchCalEvent] = useReducer(
     savedEventsReducer,
     [],
@@ -101,6 +102,8 @@ export default function ContextWrapper(props) {
         labels,
         updateLabel,
         filteredTasks,
+        pathName,
+        setPathName,
       }}
     >
       {props.children}
