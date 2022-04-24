@@ -16,12 +16,12 @@ function savedEventsReducer(state, { type, payload }) {
   }
 }
 function initEvents() {
-  const storageEvents = localStorage.getItem("savedEvents");
+  const storageEvents = localStorage.getItem("savedTasks");
   const parsedEvents = storageEvents ? JSON.parse(storageEvents) : [];
 
   if (parsedEvents.length < 1) {
-    localStorage.setItem("savedEvents", JSON.stringify(INITIAL_STATE));
-    const storageEvents = localStorage.getItem("savedEvents");
+    localStorage.setItem("savedTasks", JSON.stringify(INITIAL_STATE));
+    const storageEvents = localStorage.getItem("savedTasks");
     parsedEvents = storageEvents;
   }
 
@@ -33,30 +33,30 @@ export default function ContextWrapper(props) {
   const [smallCalendarMonth, setSmallCalendarMonth] = useState(null);
   const [daySelected, setDaySelected] = useState(dayjs());
   const [showTaskModal, setShowTaskModal] = useState(false);
-  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [selectedTask, setSelectedTask] = useState(null);
   const [labels, setLabels] = useState([]);
-  const [savedEvents, dispatchCalEvent] = useReducer(
+  const [savedTasks, dispatchCalEvent] = useReducer(
     savedEventsReducer,
     [],
     initEvents
   );
 
-  const filteredEvents = useMemo(() => {
-    return savedEvents.filter((evt) =>
+  const filteredTasks = useMemo(() => {
+    return savedTasks.filter((evt) =>
       labels
         .filter((lbl) => lbl.checked)
         .map((lbl) => lbl.label)
         .includes(evt.label)
     );
-  }, [savedEvents, labels]);
+  }, [savedTasks, labels]);
 
   useEffect(() => {
-    localStorage.setItem("savedEvents", JSON.stringify(savedEvents));
-  }, [savedEvents]);
+    localStorage.setItem("savedTasks", JSON.stringify(savedTasks));
+  }, [savedTasks]);
 
   useEffect(() => {
     setLabels((prevLabels) => {
-      return [...new Set(savedEvents.map((evt) => evt.label))].map((label) => {
+      return [...new Set(savedTasks.map((evt) => evt.label))].map((label) => {
         const currentLabel = prevLabels.find((lbl) => lbl.label === label);
         return {
           label,
@@ -64,7 +64,7 @@ export default function ContextWrapper(props) {
         };
       });
     });
-  }, [savedEvents]);
+  }, [savedTasks]);
 
   useEffect(() => {
     if (smallCalendarMonth !== null) {
@@ -74,7 +74,7 @@ export default function ContextWrapper(props) {
 
   useEffect(() => {
     if (!showTaskModal) {
-      setSelectedEvent(null);
+      setSelectedTask(null);
     }
   }, [showTaskModal]);
 
@@ -94,13 +94,13 @@ export default function ContextWrapper(props) {
         showTaskModal,
         setShowTaskModal,
         dispatchCalEvent,
-        selectedEvent,
-        setSelectedEvent,
-        savedEvents,
+        selectedTask,
+        setSelectedTask,
+        savedTasks,
         setLabels,
         labels,
         updateLabel,
-        filteredEvents,
+        filteredTasks,
       }}
     >
       {props.children}
