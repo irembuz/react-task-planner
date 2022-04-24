@@ -44,7 +44,7 @@ const Week: FunctionComponent<any> = () => {
                 <td className="border border-slate-300">
                   {dayjs(item.time).format("HH:mm")}
                 </td>
-                <td className="border border-slate-300">{item.task}</td>
+                <td className="border border-slate-300">{item.title}</td>
               </tr>
             ))}
           </tbody>
