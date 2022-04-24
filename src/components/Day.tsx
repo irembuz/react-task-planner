@@ -10,9 +10,10 @@ import GlobalContext from "../context/GlobalContext";
 
 const Day: FunctionComponent<any> = ({ day }) => {
   const [tasks, setTasks] = useState<any[]>([]);
-  const { filteredTasks } = useContext(GlobalContext);
+  const { filteredTasks, pathName, setPathName } = useContext(GlobalContext);
 
   useEffect(() => {
+    setPathName(window.location.pathname);
     const events = filteredTasks.filter(
       (evt: any) => dayjs(evt.day).format("DD-MM-YY") === day.format("DD-MM-YY")
     );

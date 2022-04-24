@@ -17,6 +17,8 @@ const GlobalContext = React.createContext({
   labels: [],
   updateLabel: () => {},
   filteredTasks: [],
+  pathName: "/",
+  setPathName: (name: string) => {},
 });
 
 export default GlobalContext

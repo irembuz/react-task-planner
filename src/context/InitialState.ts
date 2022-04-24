@@ -1,5 +1,3 @@
-import dayjs from "dayjs";
-
 const timeStamp1 = new Date().setMinutes(0) + 2 * 60 * 60 * 1000;
 const timeStamp2 = new Date().setMinutes(0) + 4 * 60 * 60 * 1000;
 

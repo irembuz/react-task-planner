@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { BiCalendarEvent, BiCalendarWeek, BiCalendar } from "react-icons/bi";
 
 import SideBarData from "./SideBarData";
 
