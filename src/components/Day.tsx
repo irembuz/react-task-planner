@@ -1,39 +1,46 @@
-import { listenerCount } from "process";
-import React, { useState, useEffect } from "react";
+import React, {
+  useState,
+  useEffect,
+  FunctionComponent,
+  useContext,
+} from "react";
+import dayjs from "dayjs";
 
-const Day = () => {
+import GlobalContext from "../context/GlobalContext";
+
+const Day: FunctionComponent<any> = ({ day }) => {
   const [tasks, setTasks] = useState<any[]>([]);
+  const { filteredEvents } = useContext(GlobalContext);
 
   useEffect(() => {
-    const timeStamp1 = new Date().setMinutes(0) + 2 * 60 * 60 * 1000;
-    const timeStamp2 = new Date().setMinutes(0) + 4 * 60 * 60 * 1000;
-    const INITIAL_STATE = [
-      { id: 1, time: new Date(timeStamp1), task: "Kitap oku" },
-      { id: 2, time: new Date(timeStamp2), task: "Kedileri besle" },
-    ];
-    setTasks([...INITIAL_STATE]);
-  }, []);
+    const events = filteredEvents.filter(
+      (evt: any) => dayjs(evt.day).format("DD-MM-YY") === day.format("DD-MM-YY")
+    );
+    setTasks(events);
+  }, [filteredEvents, day]);
 
   return (
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th>Time</th>
-            <th>Task</th>
-          </tr>
-        </thead>
-        <tbody className="task">
-          {tasks.map((item: any) => (
+    <div className="not-prose relative bg-slate-50 rounded-xl overflow-hidden dark:bg-slate-800/25">
+      <div className="relative rounded-xl overflow-auto">
+        <table className="border-collapse w-full border border-slate-400 dark:border-slate-500 bg-white dark:bg-slate-800 text-sm shadow-sm">
+          <thead className="bg-slate-50 dark:bg-slate-700">
             <tr>
-              <td>
-                {item.time.getHours()} :{item.time.getMinutes()}
-              </td>
-              <td>{item.task}</td>
+              <th className="border border-slate-300">Time</th>
+              <th className="border border-slate-300">Task</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {tasks.map((item: any) => (
+              <tr key={item.id}>
+                <td className="border border-slate-300">
+                  {dayjs(item.time).format("HH:mm")}
+                </td>
+                <td className="border border-slate-300">{item.title}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

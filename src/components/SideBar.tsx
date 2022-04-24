@@ -6,11 +6,11 @@ import SideBarData from "./SideBarData";
 
 const SideBar = () => {
   return (
-    <aside className="w-64 h-screen bg-gray-50" aria-label="Sidebar">
+    <aside className="h-full bg-gray-50" aria-label="Sidebar">
       <div className="overflow-y-auto py-4 px-3 rounded dark:bg-gray-800">
         <ul className="space-y-2">
           {SideBarData.map((item: any) => (
-            <li>
+            <li key={item.title}>
               <Link
                 to={item.path}
                 className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"

@@ -2,6 +2,7 @@ import React from "react";
 
 import dayjs from "dayjs";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import AddTaskButton from "./AddTaskButton";
 
 export default function Header() {
   return (
@@ -23,6 +24,9 @@ export default function Header() {
           new Date(dayjs().year(), new Date().getMonth(), new Date().getDate())
         ).format("DD MMMM YYYY")}
       </h2>
+      <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+        <AddTaskButton/>
+      </div>
     </header>
   );
 }

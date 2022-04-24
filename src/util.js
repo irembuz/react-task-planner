@@ -1,4 +1,11 @@
 import dayjs from "dayjs";
+import isoWeek from "dayjs/plugin/isoWeek";
+
+dayjs.extend(isoWeek);
+
+export function getFirstDayOfTheWeek(day = dayjs()) {
+  return day.isoWeekday(0);
+}
 
 export function getMonth(month = dayjs().month()) {
   month = Math.floor(month);
