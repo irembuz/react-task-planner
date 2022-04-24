@@ -29,7 +29,7 @@ const Week: FunctionComponent<any> = () => {
   }, [filteredTasks, day]);
 
   return (
-    <div className="not-prose relative bg-slate-50 rounded-xl overflow-hidden dark:bg-slate-800/25">
+    <div className="flex-1 not-prose relative rounded-xl overflow-hidden">
       <div className="relative rounded-xl overflow-auto">
         <table className="border-collapse w-full border border-slate-400 dark:border-slate-500 bg-white dark:bg-slate-800 text-sm shadow-sm">
           <thead className="bg-slate-50 dark:bg-slate-700">

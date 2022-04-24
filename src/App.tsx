@@ -19,15 +19,11 @@ const App = () => {
   return (
     <BrowserRouter>
       {showTaskModal && <TaskModal />}
-      <div className="max-h-screen h-screen">
+      <div className="h-screen flex flex-col">
         <Header />
-        <div className="grid grid-cols-6 gap-4">
-          <div className="col-span-1">
-            <SideBar />
-          </div>
-          <div className="p-4 col-span-5">
-            <HomeScreen month={currenMonth} />
-          </div>
+        <div className="flex flex-1">
+          <SideBar />
+          <HomeScreen month={currenMonth} />
         </div>
       </div>
     </BrowserRouter>
