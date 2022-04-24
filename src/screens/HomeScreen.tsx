@@ -9,7 +9,7 @@ const HomeScreen: FunctionComponent<any> = ({ month }) => {
   return (
     <Routes>
       <Route path="/" element={<Day day={dayjs()} />} />
-      <Route path="week" element={<Week />} />
+      <Route path="week" element={<Week month={month} />} />
       <Route path="month" element={<Month month={month} />} />
     </Routes>
   );
