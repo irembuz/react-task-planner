@@ -13,8 +13,6 @@ const GlobalContext = React.createContext({
   savedTasks: [],
   selectedTask: null,
   setSelectedTask: () => {},
-  setLabels: () => {},
-  labels: [],
   updateLabel: () => {},
   filteredTasks: [],
   pathName: "/",
