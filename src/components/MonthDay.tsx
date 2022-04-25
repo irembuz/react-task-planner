@@ -9,12 +9,8 @@ import GlobalContext from "../context/GlobalContext";
 
 const MonthDay: FunctionComponent<any> = ({ day, rowIdx }) => {
   const [dayTasks, setDayTasks] = useState<any>([]);
-  const {
-    setDaySelected,
-    setShowTaskModal,
-    filteredTasks,
-    setSelectedTask,
-  } = useContext<any>(GlobalContext);
+  const { setDaySelected, setShowTaskModal, filteredTasks, setSelectedTask } =
+    useContext<any>(GlobalContext);
 
   useEffect(() => {
     const events = filteredTasks.filter(
@@ -49,7 +45,7 @@ const MonthDay: FunctionComponent<any> = ({ day, rowIdx }) => {
           <div
             key={idx}
             onClick={() => setSelectedTask(evt)}
-            className={`bg-${evt.label}-200 p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate`}
+            className={`p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate`}
           >
             {evt.title}
           </div>
